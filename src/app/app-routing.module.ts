@@ -15,9 +15,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'layout', 
-    component: LayoutComponent, 
-    pathMatch: 'full'
+    path: 'layout',
+    loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule) 
+    // component: LayoutComponent, 
+    // pathMatch: 'full'
   },
   {
     path: '**', 

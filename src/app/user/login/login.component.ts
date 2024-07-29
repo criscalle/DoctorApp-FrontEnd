@@ -22,16 +22,16 @@ export class LoginComponent {
               private shared: SharedService){
 
 this.formLogin = this.fb.group({
-    UserName: ['', Validators.required],
-    Password: ['', Validators.required],
+    username: ['', Validators.required],
+    password: ['', Validators.required],
     });
  }
 
  iniciarsession(){
   this.showLoading = true;
   const request: Login = {
-    UserName: this.formLogin.value.UserName,
-    Password: this.formLogin.value.Password
+    username: this.formLogin.value.username,
+    password: this.formLogin.value.password
   };
   this.userService.iniciarsesion(request).subscribe({
     next: (response) => {

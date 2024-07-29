@@ -5,6 +5,8 @@ import {  HttpClientModule } from '@angular/common/http';
 import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MaterialModule } from '../material/material.module';
+import { AppRoutingModule } from '../app-routing.module';
+import { LayoutRoutingModule } from './layout-routing.module';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { MaterialModule } from '../material/material.module';
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+   // AppRoutingModule, se retira ya que no se va a utilizar este routing aqui y se modifica el app-routing / se utiliza el LayoutRoutingModule
+    LayoutRoutingModule
   ],
   exports: [
     ReactiveFormsModule,
