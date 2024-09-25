@@ -18,20 +18,13 @@ export class SharedService {
   }
 
   saveSession(session: Session) {
-    localStorage.setItem("usersession", JSON.stringify(session));
+    localStorage.setItem("usersession", JSON.stringify(session.username));
   }
 
-  getSession(): Session | null {
+  getSession(){
     const sessionString = localStorage.getItem("usersession");
-    if (sessionString) {
-      try {
-        return JSON.parse(sessionString) as Session; // Cast to Session type
-      } catch (error) {
-        console.error("Error parsing session:", error);
-        return null;  // Return null if parsing fails
-      }
-    }
-    return null;  // Return null if no session found
+    const userSession = JSON.parse(sessionString!);
+    return userSession;
   }
 
   deleteSession(){

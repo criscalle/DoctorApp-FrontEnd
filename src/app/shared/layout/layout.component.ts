@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-layout',
@@ -12,19 +13,22 @@ export class LayoutComponent implements OnInit {
   Username = '';
 
 
-  constructor(private router: Router, private sharedService: SharedService)
+  constructor(private router: Router, 
+              private sharedService: SharedService,
+              private cookieService: CookieService)
   {  }
 
   ngOnInit(): void {
-    const session = this.sharedService.getSession();
-    if (session) 
+    const Usersession = this.sharedService.getSession();
+    if (Usersession!=null) 
       { 
-      this.Username = session.username;
+      this.Username = Usersession;
     }
   }
 
   closesession(){
     this.sharedService.deleteSession();
+    this.cookieService.delete('Authorization','/')
     this.router.navigate(['login']);
   }
 
