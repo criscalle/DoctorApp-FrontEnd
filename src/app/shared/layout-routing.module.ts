@@ -6,8 +6,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListSpecialityComponent } from '../speciality/pages/list-speciality/list-speciality.component';
 import { } from '../speciality/speciality.module';
 import { } from '../medico/medico.module';
+import { } from '../user/user.module';
 import { ListadoMedicoComponent } from '../medico/pages/listado-medico/listado-medico.component';
 import { authGuard } from '../_guards/auth.guard';
+import { ListUserComponent } from '../user/pages/list-user/list-user.component';
 
 const routes: Routes = [
   {
@@ -19,6 +21,7 @@ const routes: Routes = [
       {path: 'dashboard', component: DashboardComponent, pathMatch: 'full'/*, canActivate: [authGuard]   // se pondría en cada path*/ },
       {path: 'specialities', component: ListSpecialityComponent, pathMatch: 'full'},
       {path: 'medicos', component: ListadoMedicoComponent, pathMatch: 'full'},
+      {path: 'users', component: ListUserComponent, pathMatch: 'full'},
       {path: '**', redirectTo: '', pathMatch: 'full'}
     ]
   }

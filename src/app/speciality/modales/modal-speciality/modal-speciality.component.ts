@@ -66,7 +66,7 @@ export class ModalSpecialityComponent implements OnInit{
                                            'Error!');   
           },
             error: (e) => {
-              this._sharedservice.showAlert(e.error.message, 
+              this._sharedservice.showAlert(e.error.message,
                 'Error!');   
             }
         })
