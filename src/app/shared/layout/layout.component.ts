@@ -12,7 +12,6 @@ export class LayoutComponent implements OnInit {
 
   Username = '';
 
-
   constructor(private router: Router, 
               private sharedService: SharedService,
               private cookieService: CookieService)

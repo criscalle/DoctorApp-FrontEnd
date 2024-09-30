@@ -6,6 +6,7 @@ import { UserService } from '../../services/user.service';
 import { SharedService } from '../../../shared/shared.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalUserComponent } from '../../modales/modal-user/modal-user.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-user',
@@ -20,6 +21,7 @@ export class ListUserComponent implements OnInit, AfterViewInit{
     'nombre',
     'email',
     'rol',
+    'acciones'
   ];
 
   dataInicial : User[] = []
@@ -62,6 +64,43 @@ aplicarFiltroListado(event: Event){
   if(this.dataSource.paginator){
     this.dataSource.paginator.firstPage();
   }
+}
+
+removeUser(user: User)
+{Swal.fire({
+  title: 'Desea Eliminar el Usuario?',
+  text: user.apellido+ ' ' + user.nombre,
+  icon: 'warning',
+  confirmButtonColor: '#3085d6',
+  confirmButtonText: 'Sí, eliminar',
+  showCancelButton: true,
+  cancelButtonColor: '#d33',
+  cancelButtonText: 'No',
+}).then((result) => {
+  if (result.isConfirmed) {
+    console.log(user)
+    this._userService.delete(user.username).subscribe({
+      next: (data) => {
+        if (data.isSuccess) {
+          this._sharedService.showAlert(
+            'Usuario eliminado',
+            'Completo'
+          );
+          this.getUser();
+        } else {
+          this._sharedService.showAlert(
+            'No se pudo eliminar el Usuario',
+            'Error!'
+          );
+        }
+      },
+      error: (e) => {
+        this._sharedService.showAlert(e.error.message, 'Error!');
+      }
+    });
+  }
+});
+
 }
 
   ngAfterViewInit(): void {

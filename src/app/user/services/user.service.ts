@@ -33,4 +33,8 @@ export class UserService {
     return this.http.get<ApiResponse>(`${this.baseUrl}ListadoRoles`);
   }
 
+  delete(username: string){
+    return this.http.delete<ApiResponse>(`${this.baseUrl}${username}`);
+  }
+
 }

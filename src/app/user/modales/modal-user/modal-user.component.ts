@@ -54,9 +54,15 @@ export class ModalUserComponent {
        this._sharedService.showAlert('Usuario ha sido registrado con Exito!','Completo');
        this.modal.close("true");
      },
-     error: (e) => {
-       this._sharedService.showAlert(e.error.errores, 'Error');
-     }
+     error: (e) =>  {
+      if (e.error && Array.isArray(e.error)) {
+      const errorMessages = e.error.map((err: { description: string; }) => err.description).join('\n'); // Unir las descripciones de los errores en un string
+      this._sharedService.showAlert(errorMessages, 'Error');
+    } else {
+      // Manejar otros tipos de errores si los hay
+      this._sharedService.showAlert('Error inesperado', 'Error');
+    }
+  }
     });
  }
 
